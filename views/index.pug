@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+  div.container.mt-5
+    div.row.justify-content-around
+
+      each product in product_list
+        div.card.w-25.mx-2.my-3
+          img.card-img-top(src=product.imgSrcPath)
+          div.card-body
+            h5.card-title.my-0 #{product.name}
+            p.card-text.my-0 #{product.category}
+            p.cart-text.mb-0  #[b $#{product.price}]
+          div.card-footer
+            a.btn.btn-primary.float-right(href="/add-to-cart/" + product._id, role="button") Add to Cart
+
+      else
+        li There are no products.
+
+

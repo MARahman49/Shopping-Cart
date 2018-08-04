@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    title= title
+    link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+
+    script(src="javascripts/jquery-slim.min.js")
+    script(src="javascripts/popper.min.js")
+    script(src="javascripts/bootstrap.min.js")
+  body
+    div.navbar.navbar-expand-lg.navbar-light.bg-light
+      div.container
+        a.navbar-brand(href="/") #[b MiniCart]
+        button.navbar-toggler(type="button", data-toggle="collapse", data-target="#collapseNav")
+          span.navbar-toggler-icon
+        div#collapseNav.callapse.navbar-collapse
+          div.navbar-nav
+
+        div.navbar-nav
+          if currentUser
+            a.nav-item.nav-link(href="/profile") #{ currentUser.name() }
+            a.nav-item.nav-link(href="/logout")
+              i.material-icons.md-18(title='logout') exit_to_app
+          else
+            a.nav-item.nav-link(href="/signup") Signup
+            a.nav-item.nav-link(href="/login") Login
+
+          a.nav-item.nav-link(href="/shopping-cart")
+            i.material-icons.md-18 shopping_cart
+            span.badge.badge-danger #{session.cart.totalQty}
+
+
+    block content

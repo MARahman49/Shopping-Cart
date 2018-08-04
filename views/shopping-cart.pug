@@ -1,0 +1,35 @@
+extends layout
+
+block content
+
+  div.col-sm-6.offset-md-3.bg-light.mt-5.p-4
+
+    if products.length
+      h3.pb-3 Customize your cart!
+      table.table
+        thead
+          tr
+            th #
+            th Product Name
+            th Qty
+            th Price
+            th Action
+        tbody
+          each product in products
+            tr
+              td #{count++}
+              td #{product.item.name}
+              td
+                span.badge.badge.badge-info #{product.qty}
+              td $#{product.price}
+              td
+                a(href='/remove/' + product.item._id) Remove
+        tfooter
+          tr.bg-warning
+            td(colspan="3") #[b Total Price]
+            td(colspan="2") #[b $#{totalPrice}]
+
+      a.btn.btn-success.float-right.py-3(href='/checkout') CHECKOUT
+
+    else
+      p Cart is Empty!

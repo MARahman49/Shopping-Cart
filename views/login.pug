@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+    div.col-md-4.offset-md-4.mt-5.bg-light.p-4
+      h4.pb-1 Login
+
+      each err in errors
+        div.alert.alert-danger
+          p #{ err }
+
+      each info in infos
+        div.alert.alert-info
+          p #{ info }
+
+      form(method='post' action='/login')
+        div.form-group
+          label(for='username') Username
+          input#username.form-control(type='text' name='username' placeholder='Username')
+        div.form-group
+          label(for='password') Password
+          input#password.form-control(type='password' name='password' placeholder='Password (6-20)')
+        button.btn.btn-primary(type='submit') Login
+        a.btn-link.ml-3(href="/signup") or create account?
